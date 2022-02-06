@@ -1,0 +1,12 @@
+{
+  "bindings": [
+    {
+      "name": "mySbMsg",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "queueName": "problem",
+      "connection": "paradisevillas_SERVICEBUS"
+    }
+  ],
+  "scriptFile": "../dist/ProblemConsumer/index.js"
+}
