@@ -11,10 +11,11 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
    
     if(req.method === "PATCH"){
 
+        const {status} = req.body;
         const response = await container.item(id,id).read()
         const problem = response.resource;
-        problem.status = "Reviewed"
-        container.items.upsert(problem)
+        problem.status = status;
+        container.items.upsert(problem);
 
         context.res = {
             body: 'responseMessage'
