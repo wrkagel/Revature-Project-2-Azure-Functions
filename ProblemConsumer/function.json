@@ -5,7 +5,7 @@
       "type": "serviceBusTrigger",
       "direction": "in",
       "queueName": "problem",
-      "connection": "paradisevillas_SERVICEBUS"
+      "connection": "PROBLEM_QUEUE"
     }
   ],
   "scriptFile": "../dist/ProblemConsumer/index.js"
