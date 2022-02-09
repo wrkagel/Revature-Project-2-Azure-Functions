@@ -18,14 +18,18 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
             empWorklogs[worklogs[i].employeeId].logTime = logTime
         }
     }
+    const returnArr = [];
     for(let i = 0; i < employees.length; i++){
-        empWorklogs[employees[i].id].fname = employees[i].fname
-        empWorklogs[employees[i].id].lname = employees[i].lname
+        const index = employees[i].id;
+        const workLog = empWorklogs[index];
+        workLog.fname = employees[i].fname
+        workLog.lname = employees[i].lname
+        returnArr.push(workLog)
     }
     
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: JSON.stringify(empWorklogs)
+        body: JSON.stringify(returnArr)
     };
 
 };
