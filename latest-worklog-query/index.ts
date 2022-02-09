@@ -4,8 +4,8 @@ import axios from "axios";
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log('HTTP trigger function processed a request.');
 
-    const response = await axios.get(`http://20.75.185.122:3000/worklogs`)
-    const response2 = await axios.get(`http://20.75.185.122:3000/employees`)
+    const response = await axios.get(`http://20.75.185.122:3000/worklogs`);
+    const response2 = await axios.get(`http://20.75.185.122:3000/employees`);
     const worklogs = response.data
     const employees = response2.data
 
@@ -22,8 +22,10 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     for(let i = 0; i < employees.length; i++){
         const index = employees[i].id;
         const workLog = empWorklogs[index];
-        workLog.fname = employees[i].fname
-        workLog.lname = employees[i].lname
+        if(workLog) {
+            workLog.fname = employees[i].fname
+            workLog.lname = employees[i].lname
+        }
         returnArr.push(workLog)
     }
     
