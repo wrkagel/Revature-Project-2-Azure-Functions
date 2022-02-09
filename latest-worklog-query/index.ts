@@ -25,8 +25,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         if(workLog) {
             workLog.fname = employees[i].fname
             workLog.lname = employees[i].lname
+            returnArr.push(workLog);
         }
-        returnArr.push(workLog)
     }
     
     context.res = {
