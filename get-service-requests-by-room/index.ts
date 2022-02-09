@@ -3,7 +3,7 @@ import axios from "axios";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const {room} = req.query
-    const response = await axios.get<any[]>("http://20.72.189.253:3000/servicerequests");
+    const response = await axios.get<any[]>("http://20.75.185.122:3000/servicerequests");
     const servicerequests = response.data;
     const serviceRequestsForRoom = [];
     servicerequests.forEach(r => {
