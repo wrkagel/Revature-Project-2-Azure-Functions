@@ -15,14 +15,15 @@ interface Problem{
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
 
-    const problemRequest:{desc:string, category:string} = req.body;
+    const problemRequest:{desc:string, category:string, photoLink:string} = req.body;
     const problemQueue = client.createSender("problem");
     const problem: Problem  ={
             id: v4(), 
             desc: problemRequest.desc,
             category: problemRequest.category,
             submittedTime: Date.now(),
-            status: "Unreviewed"
+            status: "Unreviewed",
+            photoLink: problemRequest.photoLink
           }
 
     try {
