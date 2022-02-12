@@ -9,17 +9,17 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
             status:400
         }
     }
-
     context.log('HTTP trigger function processed a request.');
     const bb = busboy({headers:req.headers});
     const {id, ext} = req.query;
     bb.on('file', function(name, file, info) {
+        context.log('busboy file parsing');
         file.on('data', function(data) {
             context.bindings.fileBlob = data;
         });
     });
     bb.on('finish', function() {
-        console.log('Done parsing form!');
+        context.log('Done parsing form!');
     
         context.res = {
             status: 201,
